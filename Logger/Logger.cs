@@ -1,6 +1,7 @@
 ﻿namespace SexyFishHorse.CitiesSkylines.Logger
 {
     using System;
+    using System.Linq;
     using ColossalFramework.Plugins;
 
     public class Logger : ILogger
@@ -60,7 +61,7 @@
 
         private void AddRaw(PluginManager.MessageType messageType, string message, params object[] arg0)
         {
-            if (arg0 != null)
+            if (arg0.Any())
             {
                 message = string.Format(message, arg0);
             }
