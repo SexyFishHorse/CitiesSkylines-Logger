@@ -1,0 +1,2 @@
+nuget push %1 87ad6ae5-144e-42f7-a6e1-0a97a3ff5cce -Source https://www.myget.org/F/sexyfishhorse-citiesskylines/api/v2/package
+nuget push %2 87ad6ae5-144e-42f7-a6e1-0a97a3ff5cce -Source https://www.myget.org/F/sexyfishhorse-citiesskylines/api/v2/package

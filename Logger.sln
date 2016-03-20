@@ -8,7 +8,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{C689D650-2231-4C10-A4DC-313E428AF862}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		build-nuget.bat = build-nuget.bat
 		LICENSE = LICENSE
+		push.bat = push.bat
 		README.md = README.md
 	EndProjectSection
 EndProject
