@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Logger</id>
+    <version>1.0.0</version>
+    <authors>Asser</authors>
+    <owners>Asser</owners>
+    <projectUrl>https://github.com/SexyFishHorse/CitiesSkylines-Logger</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A friendly wrapper for the built in debug log panel in Cities Skylines. It also allows writing the log to a file.</description>
+    <copyright>Copyright 2016</copyright>
+    <tags>CitiesSkylines Asser Logging</tags>
+    <dependencies>
+      <dependency id="ColossalManaged" version="1.3.2" />
+      <dependency id="Assembly-CSharp" version="1.3.2" />
+    </dependencies>
+  </metadata>
+</package>
