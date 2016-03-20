@@ -72,18 +72,7 @@
 
             if (LogToFile)
             {
-                switch (messageType)
-                {
-                    case PluginManager.MessageType.Error:
-                        outputLog.Error(message);
-                        break;
-                    case PluginManager.MessageType.Warning:
-                        outputLog.Warn(message);
-                        break;
-                    default:
-                        outputLog.Log(message);
-                        break;
-                }
+                outputLog.Write(message);
             }
         }
     }
