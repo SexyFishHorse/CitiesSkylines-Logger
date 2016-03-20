@@ -1,11 +1,13 @@
 ﻿namespace SexyFishHorse.CitiesSkylines.Logger
 {
     using System;
+    using System.Linq;
     using ColossalFramework.Plugins;
 
     public class Logger : ILogger
     {
         private readonly OutputLog outputLog;
+        private readonly string modFolderName;
 
         /// <summary>
         /// Creates a new instance of the logger.
@@ -13,9 +15,17 @@
         /// </summary>
         /// <param name="modFolderName">The name of the folder for the mod in %LocalAppData%\Colossal Order\Cities_Skylines\Mods. I.e. "my-mod"</param>
         /// <param name="fileName">The name of the log file in the modFolderName folder. I.e. "my-output-log.xml"</param>
-        public Logger(string modFolderName, string fileName)
+        /// <param name="clearLogFile">Indicates if the log file should be cleared when a new logger instance is created</param>
+        public Logger(string modFolderName, string fileName, bool clearLogFile)
         {
+            this.modFolderName = modFolderName;
             outputLog = new OutputLog(modFolderName, fileName);
+
+            if (clearLogFile)
+            {
+                outputLog.ClearLog();
+                Log("Log file cleared");
+            }
         }
 
         /// <summary>
@@ -30,60 +40,51 @@
 
         public void Log(string message)
         {
-            Log(message);
+            LogFormat(message);
         }
 
-        public void Log(string message, params object[] arg0)
+        public void LogFormat(string message, params object[] arg0)
         {
             AddRaw(PluginManager.MessageType.Message, message, arg0);
         }
 
         public void Error(string message)
         {
-            Error(message);
+            ErrorFormat(message);
         }
 
-        public void Error(string message, params object[] arg0)
+        public void ErrorFormat(string message, params object[] arg0)
         {
             AddRaw(PluginManager.MessageType.Error, message);
         }
 
         public void Warn(string message)
         {
-            Warn(message);
+            WarnFormat(message);
         }
 
-        public void Warn(string message, params object[] arg0)
+        public void WarnFormat(string message, params object[] arg0)
         {
             AddRaw(PluginManager.MessageType.Warning, message);
         }
 
         private void AddRaw(PluginManager.MessageType messageType, string message, params object[] arg0)
         {
-            if (arg0 != null)
+            if (arg0.Any())
             {
                 message = string.Format(message, arg0);
             }
 
+            message = string.Format("[{0}][{1}]: {2}", modFolderName, DateTime.Now.ToString("HH:mm:ss"), message);
+
             if (LogToOutputPanel || messageType == PluginManager.MessageType.Error)
             {
-                DebugOutputPanel.AddMessage(messageType, string.Format("[Chirpy in a Cage][{0}]: {1}", DateTime.Now.ToString("HH:mm:ss"), message));
+                DebugOutputPanel.AddMessage(messageType, message);
             }
 
             if (LogToFile)
             {
-                switch (messageType)
-                {
-                    case PluginManager.MessageType.Error:
-                        outputLog.Error(message);
-                        break;
-                    case PluginManager.MessageType.Warning:
-                        outputLog.Warn(message);
-                        break;
-                    default:
-                        outputLog.Log(message);
-                        break;
-                }
+                outputLog.Write(message);
             }
         }
     }
