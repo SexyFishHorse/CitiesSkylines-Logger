@@ -15,10 +15,17 @@
         /// </summary>
         /// <param name="modFolderName">The name of the folder for the mod in %LocalAppData%\Colossal Order\Cities_Skylines\Mods. I.e. "my-mod"</param>
         /// <param name="fileName">The name of the log file in the modFolderName folder. I.e. "my-output-log.xml"</param>
-        public Logger(string modFolderName, string fileName)
+        /// <param name="clearLogFile">Indicates if the log file should be cleared when a new logger instance is created</param>
+        public Logger(string modFolderName, string fileName, bool clearLogFile)
         {
             this.modFolderName = modFolderName;
             outputLog = new OutputLog(modFolderName, fileName);
+
+            if (clearLogFile)
+            {
+                outputLog.ClearLog();
+                Log("Log file cleared");
+            }
         }
 
         /// <summary>
