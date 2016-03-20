@@ -7,6 +7,7 @@
     public class Logger : ILogger
     {
         private readonly OutputLog outputLog;
+        private readonly string modFolderName;
 
         /// <summary>
         /// Creates a new instance of the logger.
@@ -16,6 +17,7 @@
         /// <param name="fileName">The name of the log file in the modFolderName folder. I.e. "my-output-log.xml"</param>
         public Logger(string modFolderName, string fileName)
         {
+            this.modFolderName = modFolderName;
             outputLog = new OutputLog(modFolderName, fileName);
         }
 
@@ -66,9 +68,11 @@
                 message = string.Format(message, arg0);
             }
 
+            message = string.Format("[{0}][{1}]: {2}", modFolderName, DateTime.Now.ToString("HH:mm:ss"), message);
+
             if (LogToOutputPanel || messageType == PluginManager.MessageType.Error)
             {
-                DebugOutputPanel.AddMessage(messageType, string.Format("[Chirpy in a Cage][{0}]: {1}", DateTime.Now.ToString("HH:mm:ss"), message));
+                DebugOutputPanel.AddMessage(messageType, message);
             }
 
             if (LogToFile)
