@@ -10,5 +10,11 @@
     <description>$description$</description>
     <copyright>Copyright 2016</copyright>
     <tags>CitiesSkylines Logging</tags>
+    <dependencies>
+      <dependency id="ICities" version="1.3.2"></dependency>
+      <dependency id="UnityEngine" version="1.3.2"></dependency>
+      <dependency id="Assembly-CSharp" version="1.3.2"></dependency>
+      <dependency id="ColossalManaged" version="1.3.2"></dependency>
+    </dependencies>
   </metadata>
 </package>
