@@ -2,6 +2,10 @@
 {
     public interface ILogger
     {
+        bool LogToOutputPanel { get; set; }
+
+        bool LogToFile { get; set; }
+
         void Log(string message);
 
         void LogFormat(string message, params object[] arg0);
