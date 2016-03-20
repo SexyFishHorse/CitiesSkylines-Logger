@@ -30,30 +30,30 @@
 
         public void Log(string message)
         {
-            LogFormat(message);
+            Log(message);
         }
 
-        public void LogFormat(string message, params object[] arg0)
+        public void Log(string message, params object[] arg0)
         {
             AddRaw(PluginManager.MessageType.Message, message, arg0);
         }
 
         public void Error(string message)
         {
-            ErrorFormat(message);
+            Error(message);
         }
 
-        public void ErrorFormat(string message, params object[] arg0)
+        public void Error(string message, params object[] arg0)
         {
             AddRaw(PluginManager.MessageType.Error, message);
         }
 
         public void Warn(string message)
         {
-            WarnFormat(message);
+            Warn(message);
         }
 
-        public void WarnFormat(string message, params object[] arg0)
+        public void Warn(string message, params object[] arg0)
         {
             AddRaw(PluginManager.MessageType.Warning, message);
         }
