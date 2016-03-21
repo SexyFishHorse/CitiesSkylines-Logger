@@ -68,7 +68,7 @@
             AddRaw(PluginManager.MessageType.Warning, message);
         }
 
-        private void LogException(Exception ex)
+        public void LogException(Exception ex)
         {
             ErrorFormat("Type: {0}", ex.GetType().Name);
             ErrorFormat("Message: {0}", ex.Message);
