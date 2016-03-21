@@ -1,5 +1,7 @@
 ﻿namespace SexyFishHorse.CitiesSkylines.Logger
 {
+    using System;
+
     public interface ILogger
     {
         bool LogToOutputPanel { get; set; }
@@ -17,5 +19,7 @@
         void Warn(string message);
 
         void WarnFormat(string message, params object[] arg0);
+
+        void LogException(Exception ex);
     }
 }
