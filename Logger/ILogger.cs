@@ -11,6 +11,8 @@
 
         void Log(string message);
 
+        void Log(object obj);
+
         [StringFormatMethod("message")]
         void LogFormat(string message, params object[] args);
 

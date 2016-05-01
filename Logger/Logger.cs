@@ -43,6 +43,11 @@
             LogFormat(message);
         }
 
+        public void Log(object obj)
+        {
+            LogFormat(obj.ToString());
+        }
+
         public void LogFormat(string message, params object[] args)
         {
             AddRaw(PluginManager.MessageType.Message, message, args);
