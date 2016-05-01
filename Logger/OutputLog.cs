@@ -27,7 +27,9 @@
 
         private static string GenerateContainingFolderPath(string modFolderName)
         {
-            var path = Path.Combine(Environment.GetEnvironmentVariable("LOCALAPPDATA"), "Colossal Order");
+            var localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+
+            var path = Path.Combine(localAppData, "Colossal Order");
             path = Path.Combine(path, "Cities_Skylines");
             path = Path.Combine(path, "Addons");
             path = Path.Combine(path, "Mods");
