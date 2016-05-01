@@ -10,7 +10,7 @@
         private readonly string modFolderName;
 
         /// <summary>
-        /// Creates a new instance of the logger.
+        /// Initializes a new instance of the <see cref="Logger"/> class.
         /// Note that multiple loggers with the same mod folder name and filename may cause errors during concurrent writes.
         /// </summary>
         /// <param name="modFolderName">The name of the folder for the mod in %LocalAppData%\Colossal Order\Cities_Skylines\Mods. I.e. "my-mod"</param>
@@ -29,12 +29,12 @@
         }
 
         /// <summary>
-        /// Indicates if messages should be sent to the games built in debug panel (Errors will always be displayed)
+        /// Gets or sets a value indicating whether messages should be sent to the games built in debug panel or not (Errors will always be displayed)
         /// </summary>
         public bool LogToOutputPanel { get; set; }
 
         /// <summary>
-        /// Indicates if messages should be stored in a file
+        /// Gets or sets a value indicating whether messages should be stored in a file or not
         /// </summary>
         public bool LogToFile { get; set; }
 
