@@ -12,8 +12,6 @@
 
         public string FileLocation { get; private set; }
 
-        public string LogFileName { get; private set; }
-
         public void ClearLog()
         {
             File.Delete(FileLocation);
