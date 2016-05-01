@@ -43,9 +43,9 @@
             LogFormat(message);
         }
 
-        public void LogFormat(string message, params object[] arg0)
+        public void LogFormat(string message, params object[] args)
         {
-            AddRaw(PluginManager.MessageType.Message, message, arg0);
+            AddRaw(PluginManager.MessageType.Message, message, args);
         }
 
         public void Error(string message)
@@ -53,9 +53,9 @@
             ErrorFormat(message);
         }
 
-        public void ErrorFormat(string message, params object[] arg0)
+        public void ErrorFormat(string message, params object[] args)
         {
-            AddRaw(PluginManager.MessageType.Error, message, arg0);
+            AddRaw(PluginManager.MessageType.Error, message, args);
         }
 
         public void Warn(string message)
@@ -63,9 +63,9 @@
             WarnFormat(message);
         }
 
-        public void WarnFormat(string message, params object[] arg0)
+        public void WarnFormat(string message, params object[] args)
         {
-            AddRaw(PluginManager.MessageType.Warning, message, arg0);
+            AddRaw(PluginManager.MessageType.Warning, message, args);
         }
 
         public void LogException(Exception ex)
