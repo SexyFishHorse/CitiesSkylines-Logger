@@ -6,7 +6,7 @@
 
     public class Logger : ILogger
     {
-        private readonly OutputLog outputLog;
+        private readonly LogFile outputLog;
         private readonly string modFolderName;
 
         /// <summary>
@@ -19,7 +19,7 @@
         public Logger(string modFolderName, string fileName, bool clearLogFile)
         {
             this.modFolderName = modFolderName;
-            outputLog = new OutputLog(modFolderName, fileName);
+            outputLog = new LogFile(modFolderName, fileName);
 
             if (clearLogFile)
             {

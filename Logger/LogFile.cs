@@ -3,9 +3,9 @@
     using System;
     using System.IO;
 
-    internal class OutputLog
+    internal class LogFile
     {
-        public OutputLog(string modFolderName, string logFileName)
+        public LogFile(string modFolderName, string logFileName)
         {
             FileLocation = GenerateFileLocationPath(modFolderName, logFileName);
         }
