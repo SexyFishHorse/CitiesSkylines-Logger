@@ -55,7 +55,7 @@
 
         public void ErrorFormat(string message, params object[] arg0)
         {
-            AddRaw(PluginManager.MessageType.Error, message);
+            AddRaw(PluginManager.MessageType.Error, message, arg0);
         }
 
         public void Warn(string message)
@@ -65,7 +65,7 @@
 
         public void WarnFormat(string message, params object[] arg0)
         {
-            AddRaw(PluginManager.MessageType.Warning, message);
+            AddRaw(PluginManager.MessageType.Warning, message, arg0);
         }
 
         public void LogException(Exception ex)
