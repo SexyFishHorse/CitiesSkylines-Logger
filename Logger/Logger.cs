@@ -75,8 +75,7 @@
 
         public void LogException(Exception ex)
         {
-            ErrorFormat("Type: {0}", ex.GetType().Name);
-            ErrorFormat("Message: {0}", ex.Message);
+            ErrorFormat("Type: {0}, Message: {1}", ex.GetType().Name, ex.Message);
             ErrorFormat("StackTrace: {0}", ex.StackTrace);
         }
 
