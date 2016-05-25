@@ -6,7 +6,7 @@
 
     public class Logger : ILogger
     {
-        private readonly OutputLog outputLog;
+        private readonly LogFile outputLog;
         private readonly string modFolderName;
 
         /// <summary>
@@ -19,7 +19,7 @@
         public Logger(string modFolderName, string fileName, bool clearLogFile)
         {
             this.modFolderName = modFolderName;
-            outputLog = new OutputLog(modFolderName, fileName);
+            outputLog = new LogFile(modFolderName, fileName);
 
             if (clearLogFile)
             {
@@ -43,9 +43,14 @@
             LogFormat(message);
         }
 
-        public void LogFormat(string message, params object[] arg0)
+        public void Log(object obj)
         {
-            AddRaw(PluginManager.MessageType.Message, message, arg0);
+            LogFormat(obj.ToString());
+        }
+
+        public void LogFormat(string message, params object[] args)
+        {
+            AddRaw(PluginManager.MessageType.Message, message, args);
         }
 
         public void Error(string message)
@@ -53,9 +58,9 @@
             ErrorFormat(message);
         }
 
-        public void ErrorFormat(string message, params object[] arg0)
+        public void ErrorFormat(string message, params object[] args)
         {
-            AddRaw(PluginManager.MessageType.Error, message, arg0);
+            AddRaw(PluginManager.MessageType.Error, message, args);
         }
 
         public void Warn(string message)
@@ -63,15 +68,14 @@
             WarnFormat(message);
         }
 
-        public void WarnFormat(string message, params object[] arg0)
+        public void WarnFormat(string message, params object[] args)
         {
-            AddRaw(PluginManager.MessageType.Warning, message, arg0);
+            AddRaw(PluginManager.MessageType.Warning, message, args);
         }
 
         public void LogException(Exception ex)
         {
-            ErrorFormat("Type: {0}", ex.GetType().Name);
-            ErrorFormat("Message: {0}", ex.Message);
+            ErrorFormat("Type: {0}, Message: {1}", ex.GetType().Name, ex.Message);
             ErrorFormat("StackTrace: {0}", ex.StackTrace);
         }
 

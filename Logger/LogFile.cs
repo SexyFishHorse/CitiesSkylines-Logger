@@ -3,16 +3,14 @@
     using System;
     using System.IO;
 
-    internal class OutputLog
+    internal class LogFile
     {
-        public OutputLog(string modFolderName, string logFileName)
+        public LogFile(string modFolderName, string logFileName)
         {
             FileLocation = GenerateFileLocationPath(modFolderName, logFileName);
         }
 
         public string FileLocation { get; private set; }
-
-        public string LogFileName { get; private set; }
 
         public void ClearLog()
         {
@@ -29,7 +27,9 @@
 
         private static string GenerateContainingFolderPath(string modFolderName)
         {
-            var path = Path.Combine(Environment.GetEnvironmentVariable("LOCALAPPDATA"), "Colossal Order");
+            var localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+
+            var path = Path.Combine(localAppData, "Colossal Order");
             path = Path.Combine(path, "Cities_Skylines");
             path = Path.Combine(path, "Addons");
             path = Path.Combine(path, "Mods");

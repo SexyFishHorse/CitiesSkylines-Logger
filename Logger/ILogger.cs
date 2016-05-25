@@ -1,6 +1,7 @@
 ﻿namespace SexyFishHorse.CitiesSkylines.Logger
 {
     using System;
+    using JetBrains.Annotations;
 
     public interface ILogger
     {
@@ -10,15 +11,20 @@
 
         void Log(string message);
 
-        void LogFormat(string message, params object[] arg0);
+        void Log(object obj);
+
+        [StringFormatMethod("message")]
+        void LogFormat(string message, params object[] args);
 
         void Error(string message);
 
-        void ErrorFormat(string message, params object[] arg0);
+        [StringFormatMethod("message")]
+        void ErrorFormat(string message, params object[] args);
 
         void Warn(string message);
 
-        void WarnFormat(string message, params object[] arg0);
+        [StringFormatMethod("message")]
+        void WarnFormat(string message, params object[] args);
 
         void LogException(Exception ex);
     }

@@ -54,7 +54,7 @@
   <ItemGroup>
     <Compile Include="ILogger.cs" />
     <Compile Include="Logger.cs" />
-    <Compile Include="OutputLog.cs" />
+    <Compile Include="LogFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
