@@ -25,7 +25,7 @@
             }
         }
 
-        private static string GenerateContainingFolderPath(string modFolderName)
+        private static string GenerateFileLocationPath(string modFolderName, string logFileName)
         {
             var localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 
@@ -34,13 +34,6 @@
             path = Path.Combine(path, "Addons");
             path = Path.Combine(path, "Mods");
             path = Path.Combine(path, modFolderName);
-
-            return path;
-        }
-
-        private static string GenerateFileLocationPath(string modFolderName, string logFileName)
-        {
-            var path = GenerateContainingFolderPath(modFolderName);
             path = Path.Combine(path, logFileName);
 
             return path;
