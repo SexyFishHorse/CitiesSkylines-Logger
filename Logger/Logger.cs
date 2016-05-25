@@ -24,7 +24,6 @@
             if (clearLogFile)
             {
                 outputLog.ClearLog();
-                Log("Log file cleared");
             }
         }
 
