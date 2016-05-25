@@ -28,5 +28,7 @@
         void WarnFormat(string message, params object[] args);
 
         void LogException(Exception ex);
+
+        void ClearLog();
     }
 }

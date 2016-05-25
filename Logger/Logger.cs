@@ -78,6 +78,11 @@
             ErrorFormat("StackTrace: {0}", ex.StackTrace);
         }
 
+        public void ClearLog()
+        {
+            outputLog.ClearLog();
+        }
+
         private void AddRaw(PluginManager.MessageType messageType, string message, params object[] arg0)
         {
             if (arg0.Any())
