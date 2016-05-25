@@ -3,6 +3,7 @@
     using System;
     using JetBrains.Annotations;
 
+    [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
     public interface ILogger
     {
         bool LogToOutputPanel { get; set; }
