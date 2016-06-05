@@ -24,37 +24,59 @@
             }
         }
 
-        public string ModFolderName { get; set; }
-
-        public ILogger GetLogger()
+        public void SetLogger(string loggerName, ILogger logger)
         {
-            return GetLogger(null);
+            ValidateLoggerName(loggerName);
+
+            if (logger == null)
+            {
+                throw new ArgumentNullException("logger");
+            }
+
+            loggers[loggerName] = logger;
+        }
+
+        public void RemoveLogger(string loggerName)
+        {
+            ValidateLoggerName(loggerName);
+
+            loggers.Remove(loggerName);
         }
 
         public ILogger GetLogger(string loggerName)
         {
-            if (string.IsNullOrEmpty(ModFolderName))
-            {
-                throw new InvalidOperationException("Mod folder name not set");
-            }
+            ValidateLoggerName(loggerName);
 
             if (loggers.ContainsKey(loggerName))
             {
                 return loggers[loggerName];
             }
 
-            var loggerFilename = GetLoggerFilename(loggerName);
+            return null;
+        }
 
-            var logger = new Logger(ModFolderName, loggerFilename, true);
+        public ILogger GetOrCreateLogger(string loggerName)
+        {
+            ValidateLoggerName(loggerName);
+
+            if (loggers.ContainsKey(loggerName))
+            {
+                return loggers[loggerName];
+            }
+
+            var logger = new Logger(loggerName);
 
             loggers.Add(loggerName, logger);
 
             return logger;
         }
 
-        private static string GetLoggerFilename(string loggerName)
+        private static void ValidateLoggerName(string loggerName)
         {
-            return string.Format("{0}.log", loggerName);
+            if (string.IsNullOrEmpty(loggerName))
+            {
+                throw new ArgumentNullException("loggerName");
+            }
         }
     }
 }
