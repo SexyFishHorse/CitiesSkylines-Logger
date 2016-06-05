@@ -1,5 +1,6 @@
 ﻿namespace SexyFishHorse.CitiesSkylines.Logger
 {
+    using System;
     using System.Collections.Generic;
     using JetBrains.Annotations;
 
@@ -23,8 +24,41 @@
             }
         }
 
+        public void SetLogger(string loggerName, ILogger logger)
+        {
+            ValidateLoggerName(loggerName);
+
+            if (logger == null)
+            {
+                throw new ArgumentNullException("logger");
+            }
+
+            loggers[loggerName] = logger;
+        }
+
+        public void RemoveLogger(string loggerName)
+        {
+            ValidateLoggerName(loggerName);
+
+            loggers.Remove(loggerName);
+        }
+
         public ILogger GetLogger(string loggerName)
         {
+            ValidateLoggerName(loggerName);
+
+            if (loggers.ContainsKey(loggerName))
+            {
+                return loggers[loggerName];
+            }
+
+            return null;
+        }
+
+        public ILogger GetOrCreateLogger(string loggerName)
+        {
+            ValidateLoggerName(loggerName);
+
             if (loggers.ContainsKey(loggerName))
             {
                 return loggers[loggerName];
@@ -35,6 +69,14 @@
             loggers.Add(loggerName, logger);
 
             return logger;
+        }
+
+        private static void ValidateLoggerName(string loggerName)
+        {
+            if (string.IsNullOrEmpty(loggerName))
+            {
+                throw new ArgumentNullException("loggerName");
+            }
         }
     }
 }
