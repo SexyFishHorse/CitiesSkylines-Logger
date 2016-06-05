@@ -26,10 +26,27 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="Logger"/> class which logs to the specified outputs
         /// </summary>
-        /// <param name="logOutputs">The loggers that log statements are outputted to</param>
+        /// <param name="logOutputs">The outputs that log statements are outputted to.</param>
         public Logger(IList<LogOutputBase> logOutputs)
         {
             this.logOutputs = logOutputs;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Logger"/> class which logs to the specified output
+        /// </summary>
+        /// <param name="logOutput">The output that log statements are outputted to.</param>
+        public Logger(LogOutputBase logOutput)
+            : this(new List<LogOutputBase> { logOutput })
+        {
+        }
+
+        public void Dispose()
+        {
+            foreach (var output in logOutputs)
+            {
+                output.Dispose();
+            }
         }
 
         public void Error(string message, params object[] args)

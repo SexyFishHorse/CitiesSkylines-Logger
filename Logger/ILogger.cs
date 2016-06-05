@@ -5,7 +5,7 @@
     using JetBrains.Annotations;
 
     [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-    public interface ILogger
+    public interface ILogger : IDisposable
     {
         /// <summary>
         /// Logs a message with the type of <see cref="PluginManager.MessageType.Error"/>.
