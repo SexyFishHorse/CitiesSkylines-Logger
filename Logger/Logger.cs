@@ -24,7 +24,6 @@
             if (clearLogFile)
             {
                 outputLog.ClearLog();
-                Log("Log file cleared");
             }
         }
 
@@ -77,6 +76,11 @@
         {
             ErrorFormat("Type: {0}, Message: {1}", ex.GetType().Name, ex.Message);
             ErrorFormat("StackTrace: {0}", ex.StackTrace);
+        }
+
+        public void ClearLog()
+        {
+            outputLog.ClearLog();
         }
 
         private void AddRaw(PluginManager.MessageType messageType, string message, params object[] arg0)
