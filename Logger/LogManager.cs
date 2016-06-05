@@ -1,6 +1,5 @@
 ﻿namespace SexyFishHorse.CitiesSkylines.Logger
 {
-    using System;
     using System.Collections.Generic;
     using JetBrains.Annotations;
 
@@ -24,37 +23,18 @@
             }
         }
 
-        public string ModFolderName { get; set; }
-
-        public ILogger GetLogger()
-        {
-            return GetLogger(null);
-        }
-
         public ILogger GetLogger(string loggerName)
         {
-            if (string.IsNullOrEmpty(ModFolderName))
-            {
-                throw new InvalidOperationException("Mod folder name not set");
-            }
-
             if (loggers.ContainsKey(loggerName))
             {
                 return loggers[loggerName];
             }
 
-            var loggerFilename = GetLoggerFilename(loggerName);
-
-            var logger = new Logger(ModFolderName, loggerFilename, true);
+            var logger = new Logger(loggerName);
 
             loggers.Add(loggerName, logger);
 
             return logger;
-        }
-
-        private static string GetLoggerFilename(string loggerName)
-        {
-            return string.Format("{0}.log", loggerName);
         }
     }
 }

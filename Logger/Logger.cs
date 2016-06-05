@@ -1,106 +1,75 @@
 ﻿namespace SexyFishHorse.CitiesSkylines.Logger
 {
     using System;
-    using System.Linq;
+    using System.Collections.Generic;
+    using System.IO;
     using ColossalFramework.Plugins;
+    using Models;
 
     public class Logger : ILogger
     {
-        private readonly LogFile outputLog;
-        private readonly string modFolderName;
+        private readonly IList<LogOutputBase> logOutputs;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Logger"/> class.
-        /// Note that multiple loggers with the same mod folder name and filename may cause errors during concurrent writes.
+        /// Initializes a new instance of the <see cref="Logger"/> class which logs to both the in-game console and to a <see cref="loggerName"/>.log 
+        /// file in the %LocalAppData%\Colossal Order\Cities_Skylines\Logs\ folder (The folder will be automatically created).
         /// </summary>
-        /// <param name="modFolderName">The name of the folder for the mod in %LocalAppData%\Colossal Order\Cities_Skylines\Mods. I.e. "my-mod"</param>
-        /// <param name="fileName">The name of the log file in the modFolderName folder. I.e. "my-output-log.xml"</param>
-        /// <param name="clearLogFile">Indicates if the log file should be cleared when a new logger instance is created</param>
-        public Logger(string modFolderName, string fileName, bool clearLogFile)
+        /// <param name="loggerName">The name of the logger. This will be used for the filename for the log as well.</param>
+        public Logger(string loggerName)
         {
-            this.modFolderName = modFolderName;
-            outputLog = new LogFile(modFolderName, fileName);
+            Directory.CreateDirectory(GetLogFolderPath());
+            var path = Path.Combine(GetLogFolderPath(), string.Format("{0}.log", loggerName));
 
-            if (clearLogFile)
-            {
-                outputLog.ClearLog();
-            }
+            logOutputs = new List<LogOutputBase> { new ConsoleOutput(), new FileOutput(path) };
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether messages should be sent to the games built in debug panel or not (Errors will always be displayed)
+        /// Initializes a new instance of the <see cref="Logger"/> class which logs to the specified outputs
         /// </summary>
-        public bool LogToOutputPanel { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether messages should be stored in a file or not
-        /// </summary>
-        public bool LogToFile { get; set; }
-
-        public void Log(string message)
+        /// <param name="logOutputs">The loggers that log statements are outputted to</param>
+        public Logger(IList<LogOutputBase> logOutputs)
         {
-            LogFormat(message);
+            this.logOutputs = logOutputs;
         }
 
-        public void Log(object obj)
+        public void Error(string message, params object[] args)
         {
-            LogFormat(obj.ToString());
+            Log(PluginManager.MessageType.Error, message, args);
         }
 
-        public void LogFormat(string message, params object[] args)
+        public void Info(string message, params object[] args)
         {
-            AddRaw(PluginManager.MessageType.Message, message, args);
+            Log(PluginManager.MessageType.Message, message, args);
         }
 
-        public void Error(string message)
+        public void Log(PluginManager.MessageType messageType, string message, params object[] args)
         {
-            ErrorFormat(message);
-        }
-
-        public void ErrorFormat(string message, params object[] args)
-        {
-            AddRaw(PluginManager.MessageType.Error, message, args);
-        }
-
-        public void Warn(string message)
-        {
-            WarnFormat(message);
-        }
-
-        public void WarnFormat(string message, params object[] args)
-        {
-            AddRaw(PluginManager.MessageType.Warning, message, args);
-        }
-
-        public void LogException(Exception ex)
-        {
-            ErrorFormat("Type: {0}, Message: {1}", ex.GetType().Name, ex.Message);
-            ErrorFormat("StackTrace: {0}", ex.StackTrace);
-        }
-
-        public void ClearLog()
-        {
-            outputLog.ClearLog();
-        }
-
-        private void AddRaw(PluginManager.MessageType messageType, string message, params object[] arg0)
-        {
-            if (arg0.Any())
+            foreach (var output in logOutputs)
             {
-                message = string.Format(message, arg0);
+                output.Log(messageType, message, args);
             }
+        }
 
-            message = string.Format("[{0}][{1}]: {2}", modFolderName, DateTime.Now.ToString("HH:mm:ss"), message);
+        public void LogException(Exception ex, PluginManager.MessageType messageType)
+        {
+            Log(messageType, "Type: {0}, Message: {1}", ex.GetType().Name, ex.Message);
+            Log(messageType, "StackTrace: {0}", ex.StackTrace);
+        }
 
-            if (LogToOutputPanel || messageType == PluginManager.MessageType.Error)
-            {
-                DebugOutputPanel.AddMessage(messageType, message);
-            }
+        public void Warn(string message, params object[] args)
+        {
+            Log(PluginManager.MessageType.Warning, message, args);
+        }
 
-            if (LogToFile)
-            {
-                outputLog.Write(message);
-            }
+        private static string GetLogFolderPath()
+        {
+            var localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+
+            var path = Path.Combine(localAppData, "Colossal Order");
+            path = Path.Combine(path, "Cities_Skylines");
+            path = Path.Combine(path, "Logs");
+
+            return path;
         }
     }
 }

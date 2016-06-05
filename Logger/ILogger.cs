@@ -1,34 +1,50 @@
 ﻿namespace SexyFishHorse.CitiesSkylines.Logger
 {
     using System;
+    using ColossalFramework.Plugins;
     using JetBrains.Annotations;
 
     [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
     public interface ILogger
     {
-        bool LogToOutputPanel { get; set; }
-
-        bool LogToFile { get; set; }
-
-        void Log(string message);
-
-        void Log(object obj);
-
+        /// <summary>
+        /// Logs a message with the type of <see cref="PluginManager.MessageType.Error"/>.
+        /// </summary>
+        /// <param name="message">The message to log.</param>
+        /// <param name="args">Optional list of string formatting arguments for the message.</param>
         [StringFormatMethod("message")]
-        void LogFormat(string message, params object[] args);
+        void Error(string message, params object[] args);
 
-        void Error(string message);
-
+        /// <summary>
+        /// Logs a message with the type of <see cref="PluginManager.MessageType.Message"/>.
+        /// </summary>
+        /// <param name="message">The message to log.</param>
+        /// <param name="args">Optional list of string formatting arguments for the message.</param>
         [StringFormatMethod("message")]
-        void ErrorFormat(string message, params object[] args);
+        void Info(string message, params object[] args);
 
-        void Warn(string message);
-
+        /// <summary>
+        /// Logs a message with the specified message type.
+        /// </summary>
+        /// <param name="messageType">The type of the message.</param>
+        /// <param name="message">The message to log.</param>
+        /// <param name="args">Optional list of string formatting arguments for the message.</param>
         [StringFormatMethod("message")]
-        void WarnFormat(string message, params object[] args);
+        void Log(PluginManager.MessageType messageType, string message, params object[] args);
 
-        void LogException(Exception ex);
+        /// <summary>
+        /// Logs an exception with the specified message type.
+        /// </summary>
+        /// <param name="exception">The exception to log.</param>
+        /// <param name="messageType">The type of the message.</param>
+        void LogException(Exception exception, PluginManager.MessageType messageType);
 
-        void ClearLog();
+        /// <summary>
+        /// Logs a message with the type of <see cref="PluginManager.MessageType.Warning"/>.
+        /// </summary>
+        /// <param name="message">The message to log.</param>
+        /// <param name="args">Optional list of string formatting arguments for the message.</param>
+        [StringFormatMethod("message")]
+        void Warn(string message, params object[] args);
     }
 }
