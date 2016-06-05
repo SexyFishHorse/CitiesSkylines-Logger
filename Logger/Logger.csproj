@@ -53,10 +53,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\ConsoleOutput.cs" />
+    <Compile Include="Models\FileOutput.cs" />
     <Compile Include="ILogger.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="LogFile.cs" />
     <Compile Include="LogManager.cs" />
+    <Compile Include="Models\LogOutputBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
