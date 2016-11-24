@@ -15,5 +15,11 @@
 
             DebugOutputPanel.AddMessage(messageType, message);
         }
+
+        public override void LogException(Exception ex)
+        {
+            LogMessage(PluginManager.MessageType.Error, ex.Message);
+            LogMessage(PluginManager.MessageType.Error, ex.StackTrace);
+        }
     }
 }

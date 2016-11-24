@@ -18,6 +18,12 @@ namespace SexyFishHorse.CitiesSkylines.Logger.Models
             streamWriter.Dispose();
         }
 
+        public override void LogException(Exception ex)
+        {
+            LogMessage(PluginManager.MessageType.Error, ex.Message);
+            LogMessage(PluginManager.MessageType.Error, ex.StackTrace);
+        }
+
         protected override void LogMessage(PluginManager.MessageType messageType, string message)
         {
             message = string.Format("[{0}][{1}]: {2}", DateTime.Now, messageType, message);

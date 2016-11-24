@@ -10,10 +10,6 @@
 
     public class LoggerTests
     {
-        private PluginManager.MessageType messageType;
-
-        private Exception exception;
-
         [Fact]
         public void Error_CalledOnce_ShouldCallLogMessageOnce()
         {
@@ -152,54 +148,9 @@
 
             var instance = new Logger(output);
 
-            instance.LogException(fixture.Create<Exception>(), fixture.Create<PluginManager.MessageType>());
+            instance.LogException(fixture.Create<Exception>());
 
-            output.LogMessageCount.ShouldBe(2);
-        }
-
-        [Fact]
-        public void LogException_CalledOnce_ShouldCallLogMessageWithSpecifiedMessageType()
-        {
-            var fixture = new Fixture();
-
-            var output = new LogOutputStub();
-
-            var instance = new Logger(output);
-
-            messageType = fixture.Create<PluginManager.MessageType>();
-            instance.LogException(fixture.Create<Exception>(), messageType);
-
-            output.LogMessages.Count(x => x.Item1 == messageType).ShouldBe(2);
-        }
-
-        [Fact]
-        public void LogException_CalledOnce_ShouldCallLogMessageWithExceptionType()
-        {
-            var fixture = new Fixture();
-
-            var output = new LogOutputStub();
-
-            var instance = new Logger(output);
-
-            exception = fixture.Create<Exception>();
-            instance.LogException(exception, fixture.Create<PluginManager.MessageType>());
-
-            output.LogMessages.First().Item2.ShouldContain(exception.GetType().Name);
-        }
-
-        [Fact]
-        public void LogException_CalledOnce_ShouldCallLogMessageWithExceptionMessage()
-        {
-            var fixture = new Fixture();
-
-            var output = new LogOutputStub();
-
-            var instance = new Logger(output);
-
-            exception = fixture.Create<Exception>();
-            instance.LogException(exception, fixture.Create<PluginManager.MessageType>());
-
-            output.LogMessages.First().Item2.ShouldContain(exception.Message);
+            output.LogExceptionsCount.ShouldBe(1);
         }
 
         [Fact]

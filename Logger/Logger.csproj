@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\ConsoleOutput.cs" />
+    <Compile Include="Models\DebugOutput.cs" />
     <Compile Include="Models\FileOutput.cs" />
     <Compile Include="ILogger.cs" />
     <Compile Include="Logger.cs" />

@@ -11,6 +11,7 @@
         {
             DisposeCount = 0;
             LogMessages = new List<Tuple<PluginManager.MessageType, string>>();
+            LogExceptions = new List<Exception>();
         }
 
         public int DisposeCount { get; private set; }
@@ -23,6 +24,16 @@
             }
         }
 
+        public int LogExceptionsCount
+        {
+            get
+            {
+                return LogExceptions.Count;
+            }
+        }
+
+        public IList<Exception> LogExceptions { get; private set; }
+
         public IList<Tuple<PluginManager.MessageType, string>> LogMessages { get; private set; }
 
         public override void Dispose()
@@ -33,6 +44,11 @@
         protected override void LogMessage(PluginManager.MessageType messageType, string message)
         {
             LogMessages.Add(new Tuple<PluginManager.MessageType, string>(messageType, message));
+        }
+
+        public override void LogException(Exception ex)
+        {
+            LogExceptions.Add(ex);
         }
     }
 }

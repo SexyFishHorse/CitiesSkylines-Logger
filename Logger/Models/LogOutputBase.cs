@@ -19,5 +19,7 @@ namespace SexyFishHorse.CitiesSkylines.Logger.Models
         }
 
         protected abstract void LogMessage(PluginManager.MessageType messageType, string message);
+
+        public abstract void LogException(Exception ex);
     }
 }

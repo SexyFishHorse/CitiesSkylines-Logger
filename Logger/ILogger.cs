@@ -36,8 +36,7 @@
         /// Logs an exception with the specified message type.
         /// </summary>
         /// <param name="exception">The exception to log.</param>
-        /// <param name="messageType">The type of the message.</param>
-        void LogException(Exception exception, PluginManager.MessageType messageType);
+        void LogException(Exception exception);
 
         /// <summary>
         /// Logs a message with the type of <see cref="PluginManager.MessageType.Warning"/>.

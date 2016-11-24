@@ -20,7 +20,7 @@
             Directory.CreateDirectory(GetLogFolderPath());
             var path = Path.Combine(GetLogFolderPath(), string.Format("{0}.log", loggerName));
 
-            logOutputs = new List<LogOutputBase> { new ConsoleOutput(), new FileOutput(path) };
+            logOutputs = new List<LogOutputBase> { new ConsoleOutput(), new FileOutput(path), new DebugOutput() };
         }
 
         /// <summary>
@@ -67,10 +67,12 @@
             }
         }
 
-        public void LogException(Exception ex, PluginManager.MessageType messageType)
+        public void LogException(Exception ex)
         {
-            Log(messageType, "Type: {0}, Message: {1}", ex.GetType().Name, ex.Message);
-            Log(messageType, "StackTrace: {0}", ex.StackTrace);
+            foreach (var output in logOutputs)
+            {
+                output.LogException(ex);
+            }
         }
 
         public void Warn(string message, params object[] args)
