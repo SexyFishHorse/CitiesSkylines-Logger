@@ -1,6 +1,9 @@
 # CitiesSkylines-Logger
 A friendly logger for Cities Skylines. Also allows for writing the log to a file.
 
+![Appveyor](https://ci.appveyor.com/api/projects/status/github/sexyfishhorse/citiesskylines-logger?svg=true) [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?maxAge=2592000)](https://gitter.im/SexyFishHorse/gitter)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://sexyfishhorse.mit-license.org/)
+
 # Nuget package
 This project is available as a nuget package. Add the appropriate feed to your Nuget package source list ([how to](https://docs.nuget.org/consume/package-manager-dialog))
 * Visual Studio 2015+: https://www.myget.org/F/sexyfishhorse-citiesskylines/api/v3/index.json
