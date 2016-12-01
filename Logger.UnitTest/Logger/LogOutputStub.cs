@@ -10,7 +10,7 @@
         public LogOutputStub()
         {
             DisposeCount = 0;
-            LogMessages = new List<Tuple<PluginManager.MessageType, string>>();
+            LogMessages = new Dictionary<PluginManager.MessageType, string>();
             LogExceptions = new List<Exception>();
         }
 
@@ -34,7 +34,7 @@
 
         public IList<Exception> LogExceptions { get; private set; }
 
-        public IList<Tuple<PluginManager.MessageType, string>> LogMessages { get; private set; }
+        public IDictionary<PluginManager.MessageType, string> LogMessages { get; private set; }
 
         public override void Dispose()
         {
@@ -43,7 +43,7 @@
 
         protected override void LogMessage(PluginManager.MessageType messageType, string message)
         {
-            LogMessages.Add(new Tuple<PluginManager.MessageType, string>(messageType, message));
+            LogMessages.Add(messageType, message);
         }
 
         public override void LogException(Exception ex)

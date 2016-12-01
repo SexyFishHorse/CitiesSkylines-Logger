@@ -4,7 +4,8 @@
     using Moq;
     using Ploeh.AutoFixture;
     using Xunit;
-    using XunitShouldExtension;
+    using Xunit.Extensions;
+    using Xunit.Should;
 
     public class LogManagerTests
     {
@@ -29,7 +30,7 @@
         {
             var fixture = new Fixture();
 
-            var exception = Assert.Throws<ArgumentNullException>(() => LogManager.Instance.SetLogger(fixture.Create<string>(), null));
+            var exception = Assert.Throws<ArgumentNullException>(() => LogManager.Instance.SetLogger(fixture.CreateAnonymous<string>(), null));
 
             exception.ParamName.ShouldBe("logger");
         }
@@ -41,7 +42,7 @@
         {
             var fixture = new Fixture();
 
-            var exception = Assert.Throws<ArgumentNullException>(() => LogManager.Instance.SetLogger(loggerName, fixture.Create<Mock<ILogger>>().Object));
+            var exception = Assert.Throws<ArgumentNullException>(() => LogManager.Instance.SetLogger(loggerName, fixture.CreateAnonymous<Mock<ILogger>>().Object));
 
             exception.ParamName.ShouldBe("loggerName");
         }
@@ -51,8 +52,8 @@
         {
             var fixture = new Fixture();
 
-            var loggerName = fixture.Create<string>();
-            var logger = fixture.Create<Mock<ILogger>>();
+            var loggerName = fixture.CreateAnonymous<string>();
+            var logger = fixture.CreateAnonymous<Mock<ILogger>>();
 
             LogManager.Instance.SetLogger(loggerName, logger.Object);
 
@@ -76,7 +77,7 @@
         {
             var fixture = new Fixture();
 
-            LogManager.Instance.GetLogger(fixture.Create<string>()).ShouldBeNull();
+            LogManager.Instance.GetLogger(fixture.CreateAnonymous<string>()).ShouldBeNull();
         }
 
         [Fact]
@@ -84,8 +85,8 @@
         {
             var fixture = new Fixture();
 
-            var loggerName = fixture.Create<string>();
-            var logger = fixture.Create<Mock<ILogger>>();
+            var loggerName = fixture.CreateAnonymous<string>();
+            var logger = fixture.CreateAnonymous<Mock<ILogger>>();
 
             LogManager.Instance.SetLogger(loggerName, logger.Object);
 
@@ -107,7 +108,7 @@
         {
             var fixture = new Fixture();
 
-            var result = LogManager.Instance.GetOrCreateLogger(fixture.Create<string>());
+            var result = LogManager.Instance.GetOrCreateLogger(fixture.CreateAnonymous<string>());
 
             result.ShouldNotBeNull();
         }
@@ -117,7 +118,7 @@
         {
             var fixture = new Fixture();
 
-            var loggerName = fixture.Create<string>();
+            var loggerName = fixture.CreateAnonymous<string>();
 
             var result1 = LogManager.Instance.GetOrCreateLogger(loggerName);
             var result2 = LogManager.Instance.GetOrCreateLogger(loggerName);
@@ -141,9 +142,9 @@
         {
             var fixture = new Fixture();
 
-            var loggerName = fixture.Create<string>();
+            var loggerName = fixture.CreateAnonymous<string>();
 
-            LogManager.Instance.SetLogger(loggerName, fixture.Create<Mock<ILogger>>().Object);
+            LogManager.Instance.SetLogger(loggerName, fixture.CreateAnonymous<Mock<ILogger>>().Object);
 
             LogManager.Instance.RemoveLogger(loggerName);
 
