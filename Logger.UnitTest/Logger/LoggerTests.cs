@@ -5,7 +5,7 @@
     using ColossalFramework.Plugins;
     using Ploeh.AutoFixture;
     using Xunit;
-    using Xunit.Should;
+    using XunitShouldExtension;
     using Logger = CitiesSkylines.Logger.Logger;
 
     public class LoggerTests
@@ -19,7 +19,7 @@
 
             var instance = new Logger(output);
 
-            instance.Error(fixture.CreateAnonymous<string>());
+            instance.Error(fixture.Create<string>());
 
             output.LogMessageCount.ShouldBe(1);
         }
@@ -33,7 +33,7 @@
 
             var instance = new Logger(output);
 
-            instance.Error(fixture.CreateAnonymous<string>());
+            instance.Error(fixture.Create<string>());
 
             output.LogMessages.Single().Key.ShouldBe(PluginManager.MessageType.Error);
         }
@@ -47,7 +47,7 @@
 
             var instance = new Logger(output);
 
-            var message = fixture.CreateAnonymous<string>();
+            var message = fixture.Create<string>();
             instance.Error(message);
 
             output.LogMessages.Single().Value.ShouldContain(message);
@@ -62,7 +62,7 @@
 
             var instance = new Logger(output);
 
-            instance.Info(fixture.CreateAnonymous<string>());
+            instance.Info(fixture.Create<string>());
 
             output.LogMessageCount.ShouldBe(1);
         }
@@ -76,7 +76,7 @@
 
             var instance = new Logger(output);
 
-            instance.Info(fixture.CreateAnonymous<string>());
+            instance.Info(fixture.Create<string>());
 
             output.LogMessages.Single().Key.ShouldBe(PluginManager.MessageType.Message);
         }
@@ -90,7 +90,7 @@
 
             var instance = new Logger(output);
 
-            var message = fixture.CreateAnonymous<string>();
+            var message = fixture.Create<string>();
             instance.Info(message);
 
             output.LogMessages.Single().Value.ShouldContain(message);
@@ -105,7 +105,7 @@
 
             var instance = new Logger(output);
 
-            instance.Warn(fixture.CreateAnonymous<string>());
+            instance.Warn(fixture.Create<string>());
 
             output.LogMessageCount.ShouldBe(1);
         }
@@ -119,7 +119,7 @@
 
             var instance = new Logger(output);
 
-            instance.Warn(fixture.CreateAnonymous<string>());
+            instance.Warn(fixture.Create<string>());
 
             output.LogMessages.Single().Key.ShouldBe(PluginManager.MessageType.Warning);
         }
@@ -133,7 +133,7 @@
 
             var instance = new Logger(output);
 
-            var message = fixture.CreateAnonymous<string>();
+            var message = fixture.Create<string>();
             instance.Warn(message);
 
             output.LogMessages.Single().Value.ShouldContain(message);
@@ -148,7 +148,7 @@
 
             var instance = new Logger(output);
 
-            instance.LogException(fixture.CreateAnonymous<Exception>());
+            instance.LogException(fixture.Create<Exception>());
 
             output.LogExceptionsCount.ShouldBe(1);
         }

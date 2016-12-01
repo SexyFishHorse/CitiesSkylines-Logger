@@ -77,8 +77,8 @@
       <HintPath>..\packages\xunit.extensibility.execution.2.1.0\lib\net45\xunit.execution.desktop.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="xunit.should, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\xunit.should.1.1\lib\net35\xunit.should.dll</HintPath>
+    <Reference Include="XunitShouldExtension, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xunit.Should.Extension.1.0.4\lib\net45\XunitShouldExtension.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
