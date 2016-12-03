@@ -20,7 +20,7 @@
             Directory.CreateDirectory(GetLogFolderPath());
             var path = Path.Combine(GetLogFolderPath(), string.Format("{0}.log", loggerName));
 
-            logOutputs = new List<LogOutputBase> { new ConsoleOutput(), new FileOutput(path), new DebugOutput() };
+            logOutputs = new List<LogOutputBase> { /*new ConsoleOutput(),*/ new FileOutput(path), new DebugOutput() };
         }
 
         /// <summary>
