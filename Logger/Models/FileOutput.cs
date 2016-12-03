@@ -11,6 +11,7 @@ namespace SexyFishHorse.CitiesSkylines.Logger.Models
         public FileOutput(string path)
         {
             streamWriter = File.CreateText(path);
+            streamWriter.AutoFlush = true;
         }
 
         public override void Dispose()
