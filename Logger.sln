@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution 
 		.gitignore = .gitignore
 		build-nuget.bat = build-nuget.bat
 		LICENSE = LICENSE
-		.nuget\nuget.config = .nuget\nuget.config
+		nuget.config = nuget.config
 		push.bat = push.bat
 		README.md = README.md
 	EndProjectSection
