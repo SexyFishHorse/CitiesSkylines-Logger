@@ -34,17 +34,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Assembly-CSharp.1.6.0.4\lib\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\packages\Assembly-CSharp.1.6.1.2\lib\Assembly-CSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ColossalManaged, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ColossalManaged.1.6.0.4\lib\ColossalManaged.dll</HintPath>
+      <HintPath>..\packages\ColossalManaged.1.6.1.2\lib\ColossalManaged.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UnityEngine.1.6.0.4\lib\UnityEngine.dll</HintPath>
+      <HintPath>..\packages\UnityEngine.1.6.1.2\lib\UnityEngine.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
