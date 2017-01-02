@@ -38,3 +38,18 @@ Property|default|Description
 --------|-------|-----------
 `LogToFile` | `false` | Indicates if messages should be written to the log file
 `LogToOutputPanel` | `false` | Indicates if messages should be written to the in-game output panel.<br/>**Note:** Errors are always written to the debug panel
+
+## Installation
+
+### Nuget feed details
+This library is available as a nuget package on the SexyFishHorse-CitiesSkylines nuget feed:
+
+Description | URL
+------------|----
+NuGet V3 feed url (Visual Studio 2015+) | `https://www.myget.org/F/sexyfishhorse-citiesskylines/api/v3/index.json`
+NuGet V2 feed url (Visual Studio 2012+) | `https://www.myget.org/F/sexyfishhorse-citiesskylines/api/v2`
+Symbol server url | `https://www.myget.org/F/sexyfishhorse-citiesskylines/symbols/`
+
+### Install command
+
+`PM> Install-Package SexyFishHorse.CitiesSkylines.Logger`
