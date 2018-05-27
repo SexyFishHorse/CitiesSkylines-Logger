@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+	<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,15 +35,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Assembly-CSharp.1.9.0.5\lib\net35\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\packages\Assembly-CSharp.1.10.0.3\lib\net35\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="ColossalManaged, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ColossalManaged.1.9.0.5\lib\net35\ColossalManaged.dll</HintPath>
+      <HintPath>..\packages\ColossalManaged.1.10.0.3\lib\net35\ColossalManaged.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UnityEngine.1.9.0.5\lib\net35\UnityEngine.dll</HintPath>
+      <HintPath>..\packages\UnityEngine.1.10.0.3\lib\net35\UnityEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
